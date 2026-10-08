@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSort — AI-Powered Waste Classification & Sorting</title>
+  <meta name="description" content="EcoSort uses deep Convolutional Neural Networks (CNN) to instantly classify waste into Recyclable and Organic categories, accelerating automated recycling and zero-waste initiatives.">
+  <meta name="keywords" content="waste classification, AI recycling, deep learning, CNN, green tech, eco AI, TensorFlow, computer vision">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js CDN for live interactive charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Gradient Background Elements -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-top-right" aria-hidden="true"></div>
+  <div class="ambient-glow glow-center" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" id="main-nav" aria-label="Main Navigation">
+      <a href="#hero" class="brand-logo" id="nav-brand">
+        <span class="logo-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </span>
+        <span class="brand-text">
+          Eco<span class="brand-accent">Sort</span>
+          <span class="brand-badge">AI</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#demo" class="nav-link">Interactive Demo</a></li>
+          <li><a href="#model" class="nav-link">CNN Model</a></li>
+          <li><a href="#results" class="nav-link">Results</a></li>
+          <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+          <li><a href="#future" class="nav-link">Future Scope</a></li>
+          <li><a href="#team" class="nav-link">Team</a></li>
+        </ul>
+      </div>
+
+      <!-- Nav CTA & Dark/Light Toggle -->
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+        <a href="#demo" class="btn btn-primary btn-sm" id="nav-demo-btn">
+          <span>Try Demo</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="pulse-dot"></span>
+            <span class="eyebrow-text">Deep Learning Computer Vision • Sustainability</span>
+          </div>
+
+          <h1 class="hero-title">
+            Sort Waste Smarter with <span class="gradient-text">AI</span>
+          </h1>
+
+          <p class="hero-tagline">
+            Automating recyclable and organic waste segregation in real-time. Powered by a custom Convolutional Neural Network (CNN) to divert garbage from landfills and empower the circular economy.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#demo" class="btn btn-primary btn-lg" id="hero-try-demo-btn">
+              <i class="fa-solid fa-bolt-lightning"></i>
+              <span>Try the Demo</span>
+            </a>
+            <a href="#model" class="btn btn-secondary btn-lg" id="hero-explore-model-btn">
+              <i class="fa-solid fa-network-wired"></i>
+              <span>Explore CNN Model</span>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" id="hero-github-btn" title="View Source on GitHub">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <!-- Hero Quick Stats Chips -->
+          <div class="hero-metrics-bar">
+            <div class="metric-pill">
+              <i class="fa-solid fa-bullseye pill-icon"></i>
+              <div class="pill-info">
+                <span class="pill-value">94.6%</span>
+                <span class="pill-label">Validation Accuracy</span>
+              </div>
+            </div>
+            <div class="metric-pill">
+              <i class="fa-solid fa-stopwatch pill-icon"></i>
+              <div class="pill-info">
+                <span class="pill-value">&lt; 45ms</span>
+                <span class="pill-label">Inference Latency</span>
+              </div>
+            </div>
+            <div class="metric-pill">
+              <i class="fa-solid fa-database pill-icon"></i>
+              <div class="pill-info">
+                <span class="pill-value">25,000+</span>
+                <span class="pill-label">Trained Images</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual / Illustration -->
+        <div class="hero-visual">
+          <div class="visual-card-wrapper">
+            <div class="visual-card">
+              <img src="assets/hero-illustration.jpg" alt="EcoSort Smart Waste AI Sorting System 3D Visualization" class="hero-img" id="hero-main-img">
+              
+              <!-- Floating Interactive Badges -->
+              <div class="floating-badge badge-top-left glass-card">
+                <span class="badge-icon icon-recycle"><i class="fa-solid fa-box-archive"></i></span>
+                <div>
+                  <div class="badge-title">Recyclable (R)</div>
+                  <div class="badge-sub">PET Plastic • 96.8% Conf.</div>
+                </div>
+              </div>
+
+              <div class="floating-badge badge-bottom-right glass-card">
+                <span class="badge-icon icon-organic"><i class="fa-solid fa-leaf"></i></span>
+                <div>
+                  <div class="badge-title">Organic (O)</div>
+                  <div class="badge-sub">Biodegradable • Compostable</div>
+                </div>
+              </div>
+
+              <div class="scan-line-overlay" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT THE PROJECT -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-earth-americas"></i> Environmental Urgency</span>
+          <h2 class="section-title">About the Project</h2>
+          <p class="section-subtitle">
+            Every year, over 2.1 billion tons of municipal solid waste is generated globally. Why waste segregation matters and how EcoSort addresses this critical bottleneck.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Problem Card -->
+          <div class="about-card problem-card">
+            <div class="card-icon-header alert-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>The Segregation Dilemma</h3>
+            <p>
+              When organic food scraps mix with plastics, cardboard, and metals, the entire batch gets contaminated. Over <strong>80% of potentially recyclable material</strong> ends up dumped in open landfills or incinerators, releasing massive methane emissions and polluting local soil.
+            </p>
+            <ul class="check-list error-list">
+              <li><i class="fa-solid fa-xmark"></i> Contaminated recycling batches rejected at processing facilities</li>
+              <li><i class="fa-solid fa-xmark"></i> High manual labor costs and biohazard risks for municipal workers</li>
+              <li><i class="fa-solid fa-xmark"></i> Decomposition in landfills creating severe greenhouse emissions</li>
+            </ul>
+          </div>
+
+          <!-- Solution Card -->
+          <div class="about-card solution-card highlighted-border">
+            <div class="card-icon-header success-icon">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <h3>What EcoSort Solves</h3>
+            <p>
+              <strong>EcoSort</strong> is an automated computer vision intelligence system that accurately recognizes the material category of discarded items at the point of disposal. By providing instant binary classification into <strong>Organic</strong> and <strong>Recyclable</strong>, it enables both intelligent public bins and sorting conveyors.
+            </p>
+            <ul class="check-list success-list">
+              <li><i class="fa-solid fa-check"></i> Sub-50ms instant visual decision making at point of disposal</li>
+              <li><i class="fa-solid fa-check"></i> Robust to varying angles, lighting, deformities, and crushing</li>
+              <li><i class="fa-solid fa-check"></i> Clean segregation pipelines that boost recycling yield up to 3x</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3 Pillars of Impact -->
+        <div class="impact-stats-container">
+          <div class="impact-card">
+            <div class="impact-num">80%</div>
+            <div class="impact-label">Methane Emission Reduction</div>
+            <p class="impact-desc">Preventing compostable organics from rotting anaerobically in landfills.</p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-num">3x</div>
+            <div class="impact-label">Higher Recycling Purity</div>
+            <p class="impact-desc">Eliminating organic grease contamination from paper and plastic streams.</p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-num">100%</div>
+            <div class="impact-label">Edge & Cloud Deployable</div>
+            <p class="impact-desc">Lightweight CNN footprint ready for IoT smart bins, mobile apps, or cloud APIs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: HOW IT WORKS -->
+    <section class="section how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-diagram-project"></i> Pipeline Workflow</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">
+            From raw camera capture to real-time classification in 4 seamless stages.
+          </p>
+        </div>
+
+        <div class="workflow-steps">
+          <!-- Step 1 -->
+          <div class="step-card" data-step="1">
+            <div class="step-badge">Step 01</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <h3 class="step-title">Upload Image</h3>
+            <p class="step-desc">
+              A high-resolution image is captured via phone camera, conveyor optical sensor, or file upload in any common format (JPEG, PNG, WebP).
+            </p>
+            <div class="step-meta">
+              <span class="tag">Input: RGB Stream</span>
+              <span class="tag">Resolution: Any</span>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="step-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
+
+          <!-- Step 2 -->
+          <div class="step-card" data-step="2">
+            <div class="step-badge">Step 02</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <h3 class="step-title">Preprocess</h3>
+            <p class="step-desc">
+              OpenCV resizes the frame to <strong>224 × 224 pixels</strong>, normalizes RGB channels to [0.0, 1.0], and applies data augmentation and color balancing.
+            </p>
+            <div class="step-meta">
+              <span class="tag">Size: 224×224×3</span>
+              <span class="tag">Norm: float32</span>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="step-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
+
+          <!-- Step 3 -->
+          <div class="step-card" data-step="3">
+            <div class="step-badge">Step 03</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3 class="step-title">CNN Predicts</h3>
+            <p class="step-desc">
+              Convolutional layers extract spatial textures, edges, and material reflections, followed by MaxPooling and dense layers computing softmax probability.
+            </p>
+            <div class="step-meta">
+              <span class="tag">Inference: &lt; 45ms</span>
+              <span class="tag">Loss: Binary CE</span>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="step-arrow" aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></div>
+
+          <!-- Step 4 -->
+          <div class="step-card highlight-step" data-step="4">
+            <div class="step-badge">Step 04</div>
+            <div class="step-icon">
+              <i class="fa-solid fa-square-poll-vertical"></i>
+            </div>
+            <h3 class="step-title">Result Shown</h3>
+            <p class="step-desc">
+              Instantly labeled as <strong>Recyclable (R)</strong> or <strong>Organic (O)</strong> with confidence score, recycling bin guide, and environmental impact.
+            </p>
+            <div class="step-meta">
+              <span class="tag tag-success">Recyclable</span>
+              <span class="tag tag-warning">Organic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE DEMO -->
+    <section class="section demo-section" id="demo">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-laptop-code"></i> Live Demonstration</span>
+          <h2 class="section-title">Try EcoSort in Action</h2>
+          <p class="section-subtitle">
+            Upload your own photo or pick from real-world samples below to see the CNN model detect and classify waste in real time.
+          </p>
+        </div>
+
+        <div class="demo-wrapper">
+          <!-- Demo Mode Tabs -->
+          <div class="demo-tabs">
+            <button class="demo-tab-btn active" id="tab-interactive" data-tab="interactive">
+              <i class="fa-solid fa-play"></i> Interactive AI Classifier
+            </button>
+            <button class="demo-tab-btn" id="tab-showcase" data-tab="showcase">
+              <i class="fa-solid fa-tablet-screen-button"></i> Mobile App & Dashboard Showcase
+            </button>
+          </div>
+
+          <!-- TAB PANEL 1: INTERACTIVE DEMO -->
+          <div class="demo-panel active" id="panel-interactive">
+            <div class="demo-grid">
+              <!-- Left Column: Input & Sample Picker -->
+              <div class="demo-input-card">
+                <div class="card-header-line">
+                  <h4><i class="fa-solid fa-arrow-up-from-bracket"></i> Select or Upload Scene</h4>
+                  <span class="badge-status">Multi-Object AI Detector</span>
+                </div>
+
+                <!-- Presets Selector -->
+                <div class="presets-section">
+                  <div class="preset-category-title">
+                    <i class="fa-solid fa-layer-group"></i> Mixed Scenes (Simultaneous Dual Detection):
+                  </div>
+                  <div class="preset-items mixed-presets">
+                    <button class="preset-btn active" data-mode="mixed" data-preset="mixed-conveyor" data-title="4-Object Mixed Conveyor Stream" data-img="assets/mixed-conveyor.jpg">
+                      <img src="assets/mixed-conveyor.jpg" alt="Conveyor Stream" class="preset-thumb">
+                      <div>
+                        <span>Conveyor Belt Stream</span>
+                        <small class="preset-badge-tag"><span class="dot-green"></span> 2 Recyclable • <span class="dot-orange"></span> 2 Organic</small>
+                      </div>
+                    </button>
+                    <button class="preset-btn" data-mode="mixed" data-preset="mixed-cafeteria" data-title="Cafeteria Tray Mixed Waste" data-img="assets/mixed-waste-1.jpg">
+                      <img src="assets/mixed-waste-1.jpg" alt="Cafeteria Tray" class="preset-thumb">
+                      <div>
+                        <span>Cafeteria Tray</span>
+                        <small class="preset-badge-tag"><span class="dot-green"></span> Bottle • <span class="dot-orange"></span> Banana Peel</small>
+                      </div>
+                    </button>
+                    <button class="preset-btn" data-mode="mixed" data-preset="mixed-office" data-title="Office Mixed Waste" data-img="assets/mixed-waste-2.jpg">
+                      <img src="assets/mixed-waste-2.jpg" alt="Office Waste" class="preset-thumb">
+                      <div>
+                        <span>Office Desk Trash</span>
+                        <small class="preset-badge-tag"><span class="dot-green"></span> Soda Can • <span class="dot-orange"></span> Apple Core</small>
+                      </div>
+                    </button>
+                  </div>
+
+                  <div class="preset-category-title mt-3">
+                    <i class="fa-solid fa-cube"></i> Single Item Isolated Samples:
+                  </div>
+                  <div class="preset-items single-presets">
+                    <button class="preset-btn" data-mode="single" data-preset="bottle" data-title="Plastic Bottle" data-img="assets/sample-bottle.jpg">
+                      <img src="assets/sample-bottle.jpg" alt="Plastic Bottle" class="preset-thumb">
+                      <div>
+                        <span>Plastic Bottle</span>
+                        <small class="preset-badge-tag"><span class="dot-green"></span> Recyclable</small>
+                      </div>
+                    </button>
+                    <button class="preset-btn" data-mode="single" data-preset="banana" data-title="Banana Peel" data-img="assets/sample-organic.jpg">
+                      <img src="assets/sample-organic.jpg" alt="Banana Peel" class="preset-thumb">
+                      <div>
+                        <span>Banana Peel</span>
+                        <small class="preset-badge-tag"><span class="dot-orange"></span> Organic</small>
+                      </div>
+                    </button>
+                    <button class="preset-btn" data-mode="single" data-preset="can" data-title="Soda Can" data-img="assets/sample-can.jpg">
+                      <img src="assets/sample-can.jpg" alt="Soda Can" class="preset-thumb">
+                      <div>
+                        <span>Soda Can</span>
+                        <small class="preset-badge-tag"><span class="dot-green"></span> Recyclable</small>
+                      </div>
+                    </button>
+                    <button class="preset-btn" data-mode="single" data-preset="apple" data-title="Apple Core" data-img="assets/sample-apple.jpg">
+                      <img src="assets/sample-apple.jpg" alt="Apple Core" class="preset-thumb">
+                      <div>
+                        <span>Apple Core</span>
+                        <small class="preset-badge-tag"><span class="dot-orange"></span> Organic</small>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Custom Upload Box -->
+                <div class="upload-dropzone" id="upload-dropzone">
+                  <input type="file" id="file-input" accept="image/*" class="file-input-hidden">
+                  <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                  <div class="dropzone-text">
+                    <strong>Upload your own mixed or single waste image</strong>
+                    <span>or <button type="button" class="btn-link" id="browse-btn">browse files</button> (PNG, JPG, WebP)</span>
+                  </div>
+                </div>
+
+                <!-- Simulation Controls & One-by-One Separation -->
+                <div class="demo-controls">
+                  <button class="btn btn-primary btn-block" id="run-inference-btn">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>Scan & Detect All Particles</span>
+                  </button>
+                  <button class="btn btn-secondary btn-block" id="step-by-step-btn">
+                    <i class="fa-solid fa-forward-step"></i>
+                    <span>Separate Waste One-by-One</span>
+                  </button>
+                  <button class="btn btn-outline btn-block" id="random-sample-btn">
+                    <i class="fa-solid fa-shuffle"></i>
+                    <span>Random Mixed Scene</span>
+                  </button>
+                </div>
+
+                <!-- One-by-One Sequential Separation Player Controller -->
+                <div class="sequential-player-box" id="sequential-player-box" style="display: none;">
+                  <div class="player-header">
+                    <span class="player-title"><i class="fa-solid fa-microchip"></i> Sequential Waste Segregation</span>
+                    <span class="player-step-counter" id="player-step-counter">Item 1 of 5</span>
+                  </div>
+                  <div class="player-controls-row">
+                    <button class="player-btn" id="player-prev-btn" title="Previous Item"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="player-btn primary" id="player-play-btn" title="Auto-Play / Pause"><i class="fa-solid fa-play" id="play-icon"></i> <span>Auto Sort</span></button>
+                    <button class="player-btn" id="player-next-btn" title="Next Item"><i class="fa-solid fa-forward-step"></i></button>
+                    <button class="player-btn" id="player-reset-btn" title="Reset View"><i class="fa-solid fa-rotate-left"></i></button>
+                  </div>
+                  <div class="player-status-line">
+                    <span class="status-indicator-dot pulse"></span>
+                    <span id="player-status-text">Isolating Item #1: Plastic Bottle Cap...</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Visualizer & Inference Output -->
+              <div class="demo-output-card">
+                <div class="card-header-line">
+                  <h4><i class="fa-solid fa-eye"></i> Multi-Particle Detection Viewport</h4>
+                  <span class="latency-badge" id="latency-counter"><i class="fa-solid fa-bolt"></i> Latency: 42ms</span>
+                </div>
+
+                <!-- Color Coding Legend & Filter Pills -->
+                <div class="viewport-legend-bar">
+                  <div class="legend-filter-group">
+                    <button class="filter-chip active" data-filter="all">All Objects (<span id="count-all-badge">5</span>)</button>
+                    <button class="filter-chip chip-recyclable" data-filter="recyclable">
+                      <span class="legend-color-dot green"></span> Recyclable (<span id="count-rec-badge">3</span>)
+                    </button>
+                    <button class="filter-chip chip-organic" data-filter="organic">
+                      <span class="legend-color-dot orange"></span> Organic (<span id="count-org-badge">2</span>)
+                    </button>
+                  </div>
+                  <button class="explain-dl-trigger-btn" id="explain-dl-trigger-btn" title="How the Deep Learning CNN Model locates and names each item">
+                    <i class="fa-solid fa-brain"></i> <span>How DL Model Works</span>
+                  </button>
+                </div>
+
+                <!-- Viewport Stage with Multi-Bounding Box Container -->
+                <div class="viewport-stage" id="viewport-stage">
+                  <img src="assets/mixed-conveyor.jpg" alt="Current Waste Preview" id="preview-image" class="preview-image">
+                  
+                  <!-- Scanning Effect -->
+                  <div class="laser-scanner" id="laser-scanner"></div>
+
+                  <!-- Dynamic Multi-Bounding Boxes Container -->
+                  <div class="multi-boxes-container" id="multi-boxes-container">
+                    <!-- Dynamic boxes will be populated by script.js -->
+                  </div>
+
+                  <!-- Physical Chute Sorting Animation Overlay -->
+                  <div class="chute-overlay" id="chute-overlay" style="display: none;">
+                    <div class="chute-badge" id="chute-badge">
+                      <i class="fa-solid fa-arrow-down"></i> <span id="chute-text">Diverting to Blue Recycling Bin</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pipeline Processing Status Log -->
+                <div class="processing-log" id="processing-log">
+                  <div class="log-item active"><i class="fa-solid fa-check"></i> Scene normalized & feature tensor extracted</div>
+                  <div class="log-item active"><i class="fa-solid fa-check"></i> Spatial localization completed (5 particles located)</div>
+                  <div class="log-item active"><i class="fa-solid fa-check"></i> Deep learning CNN classified objects individually</div>
+                </div>
+
+                <!-- Deep Learning AI Explanation Inspector (Real-time Model Reasoning) -->
+                <div class="dl-reasoning-card" id="dl-reasoning-card">
+                  <div class="dl-reasoning-header">
+                    <div>
+                      <span class="dl-chip"><i class="fa-solid fa-microchip"></i> CNN Feature Reasoning</span>
+                      <h5 id="reasoning-item-title">Item Inspection: Plastic Bottle Cap</h5>
+                    </div>
+                    <span class="reasoning-conf-badge" id="reasoning-conf-badge">98.4% Confidence</span>
+                  </div>
+                  <div class="dl-reasoning-body">
+                    <div class="reasoning-feature-row">
+                      <strong><i class="fa-solid fa-magnifying-glass"></i> Visual CNN Features Detected:</strong>
+                      <span id="reasoning-visual-text">Circular radial edge contours, specular high-gloss polymer sheen, threaded neck texture.</span>
+                    </div>
+                    <div class="reasoning-feature-row">
+                      <strong><i class="fa-solid fa-network-wired"></i> Convolutional Layer Activation:</strong>
+                      <span id="reasoning-layer-text">Filters in Conv Block 3 fire strongly on rigid circular geometry ➔ Dense Softmax selects Polypropylene (PP #5).</span>
+                    </div>
+                    <div class="reasoning-feature-row">
+                      <strong><i class="fa-solid fa-recycle"></i> Physical Segregation Action:</strong>
+                      <span id="reasoning-action-text">Categorized as <strong>RECYCLABLE</strong> ➔ Signals automated conveyor diverter #1 to route into Blue Stream.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Simultaneous Multi-Object Detection Result Display -->
+                <div class="result-display" id="result-display">
+                  <div class="scene-summary-header">
+                    <div>
+                      <h5 id="scene-summary-title">5 Waste Objects Located & Identified</h5>
+                      <span class="scene-summary-subtitle" id="scene-summary-sub">Individual waste items separated and classified one-by-one</span>
+                    </div>
+                    <div class="split-pill-container">
+                      <span class="badge-split rec"><i class="fa-solid fa-recycle"></i> <span id="summary-rec-count">3</span> Recyclable</span>
+                      <span class="badge-split org"><i class="fa-solid fa-leaf"></i> <span id="summary-org-count">2</span> Organic</span>
+                    </div>
+                  </div>
+
+                  <!-- Dual Category Distribution Bar -->
+                  <div class="dual-distribution-bar" title="Composition ratio">
+                    <div class="dist-fill dist-recyclable" id="dist-rec-fill" style="width: 60%;"></div>
+                    <div class="dist-fill dist-organic" id="dist-org-fill" style="width: 40%;"></div>
+                  </div>
+
+                  <!-- Detected Particles Itemized List -->
+                  <div class="particles-detected-list" id="particles-detected-list">
+                    <!-- Populated dynamically with interactive particle cards -->
+                  </div>
+
+                  <!-- Dual Segregation Instructions -->
+                  <div class="dual-segregation-tips">
+                    <div class="segregation-tip-box tip-recyclable">
+                      <div class="tip-title"><i class="fa-solid fa-recycle"></i> Recyclable Handling (Blue Bin):</div>
+                      <p id="tip-rec-text">Rinse plastic bottle, cap, and aluminium can to remove residues. Squash to save bin capacity.</p>
+                    </div>
+                    <div class="segregation-tip-box tip-organic">
+                      <div class="tip-title"><i class="fa-solid fa-leaf"></i> Organic Handling (Green Bin):</div>
+                      <p id="tip-org-text">Place banana peel and apple core directly into composting or wet-waste receptacle. 100% biodegradable.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB PANEL 2: SHOWCASE & SCREENSHOTS -->
+          <div class="demo-panel" id="panel-showcase">
+            <div class="showcase-content">
+              <div class="showcase-header">
+                <h3>EcoSort Mobile & Smart Bin Dashboard</h3>
+                <p>Designed for real-world deployment on tablets, mobile edge devices, and municipal conveyor consoles.</p>
+              </div>
+
+              <div class="showcase-preview-frame">
+                <img src="assets/app-dashboard-preview.jpg" alt="EcoSort Realtime AI Dashboard Screen Preview" class="showcase-img">
+                <div class="showcase-caption">
+                  <div class="caption-item">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <strong>Real-time Viewfinder HUD:</strong> Instant visual feedback with bounding boxes & category probability.
+                  </div>
+                  <div class="caption-item">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <strong>Waste Diversion Analytics:</strong> Tracks daily kilograms segregated and calculates circular economy diversion rate.
+                  </div>
+                  <div class="caption-item">
+                    <i class="fa-solid fa-link"></i>
+                    <strong>Colab & Cloud API:</strong> RESTful endpoint ready for Raspberry Pi and Jetson smart bins.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: MODEL DETAILS -->
+    <section class="section model-section" id="model">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-brain"></i> Deep Learning Engine</span>
+          <h2 class="section-title">Model Architecture & Training Setup</h2>
+          <p class="section-subtitle">
+            A tailored Convolutional Neural Network designed for high classification accuracy while preserving ultra-low inference latency for edge deployment.
+          </p>
+        </div>
+
+        <!-- Interactive Architecture Explorer -->
+        <div class="model-architecture-card">
+          <div class="arch-header">
+            <div>
+              <h3>Convolutional Neural Network Pipeline</h3>
+              <p>Click any layer block below to inspect its receptive field, filters, output dimensions, and activation function.</p>
+            </div>
+            <span class="arch-tag">Input: 224 × 224 × 3</span>
+          </div>
+
+          <!-- Visual Layer Flow -->
+          <div class="layer-blocks-flow">
+            <div class="layer-block active" data-layer="input">
+              <span class="block-step">0</span>
+              <div class="block-type">Input</div>
+              <div class="block-shape">224×224×3</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="conv1">
+              <span class="block-step">1</span>
+              <div class="block-type">Conv2D + ReLU</div>
+              <div class="block-shape">32 @ 3×3</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="pool1">
+              <span class="block-step">2</span>
+              <div class="block-type">MaxPool2D</div>
+              <div class="block-shape">112×112×32</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="conv2">
+              <span class="block-step">3</span>
+              <div class="block-type">Conv2D + ReLU</div>
+              <div class="block-shape">64 @ 3×3</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="pool2">
+              <span class="block-step">4</span>
+              <div class="block-type">MaxPool2D</div>
+              <div class="block-shape">56×56×64</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="conv3">
+              <span class="block-step">5</span>
+              <div class="block-type">Conv2D + ReLU</div>
+              <div class="block-shape">128 @ 3×3</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="pool3">
+              <span class="block-step">6</span>
+              <div class="block-type">MaxPool2D</div>
+              <div class="block-shape">28×28×128</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="dense">
+              <span class="block-step">7</span>
+              <div class="block-type">Flatten + Dense</div>
+              <div class="block-shape">128 (Dropout 0.5)</div>
+            </div>
+
+            <div class="flow-chevron"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="layer-block" data-layer="output">
+              <span class="block-step">8</span>
+              <div class="block-type">Output Softmax</div>
+              <div class="block-shape">2 Classes [O, R]</div>
+            </div>
+          </div>
+
+          <!-- Layer Inspector Details Box -->
+          <div class="layer-inspector glass-card" id="layer-inspector">
+            <div class="inspector-badge" id="inspector-name">Input Layer</div>
+            <div class="inspector-grid">
+              <div class="insp-col">
+                <span class="insp-title">Operation:</span>
+                <span class="insp-value" id="inspector-op">Input Tensor Feed</span>
+              </div>
+              <div class="insp-col">
+                <span class="insp-title">Output Shape:</span>
+                <span class="insp-value" id="inspector-shape">(None, 224, 224, 3)</span>
+              </div>
+              <div class="insp-col">
+                <span class="insp-title">Kernel / Stride:</span>
+                <span class="insp-value" id="inspector-kernel">N/A</span>
+              </div>
+              <div class="insp-col">
+                <span class="insp-title">Activation:</span>
+                <span class="insp-value" id="inspector-activation">Normalized Linear [0, 1]</span>
+              </div>
+            </div>
+            <p class="insp-description" id="inspector-desc">
+              Receives preprocessed RGB images normalized from [0, 255] to [0.0, 1.0]. Represents the primary perceptual input into the convolutional feature extraction pipeline.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dataset & Training Setup Split -->
+        <div class="model-meta-grid">
+          <!-- Dataset Specifications -->
+          <div class="meta-card">
+            <div class="meta-card-header">
+              <i class="fa-solid fa-database"></i>
+              <h4>Dataset Specifications</h4>
+            </div>
+            <p>
+              Trained on the <strong>Waste Classification Benchmark (Waste-to-Wealth)</strong>, featuring comprehensive real-world items captured under varying illumination, backgrounds, and orientations.
+            </p>
+            <div class="dataset-stats-list">
+              <div class="d-stat-row">
+                <span>Total Clean Samples:</span>
+                <strong>25,077 Images</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Organic (O) Class:</span>
+                <strong>12,565 Images (50.1%)</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Recyclable (R) Class:</span>
+                <strong>12,512 Images (49.9%)</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Train / Val / Test Split:</span>
+                <strong>80% / 10% / 10%</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Augmentations:</span>
+                <strong>Rotation (±25°), Horizontal Flip, Zoom (0.2)</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Training Setup & Hyperparameters -->
+          <div class="meta-card">
+            <div class="meta-card-header">
+              <i class="fa-solid fa-gears"></i>
+              <h4>Training Setup & Hyperparameters</h4>
+            </div>
+            <p>
+              Iteratively tuned with learning rate scheduling to avoid overfitting while maximizing generalization across unseen deformed packaging.
+            </p>
+            <div class="dataset-stats-list">
+              <div class="d-stat-row">
+                <span>Optimizer:</span>
+                <strong>Adam (Initial lr = 0.0001, β₁=0.9, β₂=0.999)</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Loss Function:</span>
+                <strong>Binary Cross-Entropy</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Batch Size & Epochs:</span>
+                <strong>Batch: 32 • Epochs: 25 (EarlyStopping patience=4)</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Regularization:</span>
+                <strong>Dropout (0.5) + Batch Normalization</strong>
+              </div>
+              <div class="d-stat-row">
+                <span>Compute Hardware:</span>
+                <strong>NVIDIA T4 Tensor Core GPU (Google Colab Pro)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEEP LEARNING TECHNICAL EXPLANATION: How CNN Locates & Separates Waste One by One -->
+        <div class="dl-deepdive-card mt-4" id="dl-explanation-section">
+          <div class="deepdive-header">
+            <div class="deepdive-icon-box">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+              <span class="deepdive-pill">Technical Deep Dive</span>
+              <h3>How Deep Learning & CNNs Locate, Name, and Segregate Waste One-by-One</h3>
+              <p>An end-to-end mathematical and architectural breakdown of how our computer vision pipeline identifies individual items like banana peels and plastic bottle caps.</p>
+            </div>
+          </div>
+
+          <div class="deepdive-grid">
+            <!-- Stage 1 -->
+            <div class="deepdive-step-card">
+              <div class="step-num-badge">01</div>
+              <h4>Feature Extraction Hierarchies</h4>
+              <p>
+                As image pixels pass through successive <strong>Conv2D kernels (3×3)</strong>, the neural network learns hierarchical spatial representations:
+              </p>
+              <ul class="deepdive-bullets">
+                <li><strong>Early Layers (Conv1):</strong> Detect elementary gradients, circular edge curvature (e.g. bottle cap circumference), and contrast transitions.</li>
+                <li><strong>Middle Layers (Conv2):</strong> Map surface textures—specular gloss on PET plastic, ribbed treads on caps, and enzyme bruising on banana peels.</li>
+                <li><strong>Deeper Layers (Conv3):</strong> Assemble semantic object abstractions, distinguishing an eaten apple core from an aluminium beverage can.</li>
+              </ul>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="deepdive-step-card">
+              <div class="step-num-badge">02</div>
+              <h4>Spatial Localization & Bounding Boxes</h4>
+              <p>
+                To pinpoint <em>where</em> each item is located in a mixed scene, the CNN uses an anchor-based detection head and spatial feature maps:
+              </p>
+              <ul class="deepdive-bullets">
+                <li><strong>Receptive Field Grids:</strong> The feature tensor preserves 2D spatial coordinates relative to the input frame.</li>
+                <li><strong>Bounding Box Regression ($L_{reg}$):</strong> Predicts bounding coordinates $[x_{min}, y_{min}, x_{max}, y_{max}]$ surrounding each particle.</li>
+                <li><strong>Non-Maximum Suppression (NMS):</strong> Filters redundant candidate boxes with an IoU threshold of 0.45, ensuring each waste item is bounded by a single clean frame.</li>
+              </ul>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="deepdive-step-card">
+              <div class="step-num-badge">03</div>
+              <h4>Fine-Grained Classification Head</h4>
+              <p>
+                Extracted feature vectors are routed through fully connected dense layers with <strong>Softmax activation</strong> to determine fine-grained object labels:
+              </p>
+              <div class="equation-box">
+                <code>P(Class i | x) = exp(z_i) / Σ exp(z_j)</code>
+              </div>
+              <p class="mt-2">
+                This outputs specific granular names (e.g., <em>Plastic Bottle Cap</em>, <em>Banana Peel</em>, <em>Crushed Can</em>) before mapping to the primary stream: <strong>Recyclable (Blue)</strong> or <strong>Organic (Green)</strong>.
+              </p>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="deepdive-step-card">
+              <div class="step-num-badge">04</div>
+              <h4>Sequential Physical Segregation Actuation</h4>
+              <p>
+                Once particles are identified and located, the deep learning model interfaces with edge microcontrollers (Raspberry Pi / Jetson) to physically sort each item:
+              </p>
+              <ul class="deepdive-bullets">
+                <li><strong>Spatial Coordinate Queue:</strong> Items on the conveyor belt are assigned sequential timestamps Δt = d / v_belt.</li>
+                <li><strong>IoT Actuation Pulses:</strong> High-speed optical air-ejectors or robotic delta arms trigger at the exact coordinate (x_i, y_i).</li>
+                <li><strong>Zero-Contamination Routing:</strong> Directs plastic caps and bottles to the blue recycling chute, and food scraps to the green organic compost hopper one-by-one.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: RESULTS & PERFORMANCE -->
+    <section class="section results-section" id="results">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-chart-line"></i> Empirical Performance</span>
+          <h2 class="section-title">Results & Evaluation</h2>
+          <p class="section-subtitle">
+            Evaluating model accuracy, precision, recall, and convergence stability across unseen test sets.
+          </p>
+        </div>
+
+        <!-- 4 Big Metric Counters -->
+        <div class="results-kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-box success"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="kpi-value"><span class="counter" data-target="94.6">0</span>%</div>
+            <div class="kpi-title">Test Accuracy</div>
+            <div class="kpi-sub">Overall classification fidelity</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box primary"><i class="fa-solid fa-crosshairs"></i></div>
+            <div class="kpi-value"><span class="counter" data-target="94.2">0</span>%</div>
+            <div class="kpi-title">Precision</div>
+            <div class="kpi-sub">Minimal false positives in recycling</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box warning"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="kpi-value"><span class="counter" data-target="95.1">0</span>%</div>
+            <div class="kpi-title">Recall</div>
+            <div class="kpi-sub">High organic waste retrieval rate</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-box info"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="kpi-value"><span class="counter" data-target="94.6">0</span>%</div>
+            <div class="kpi-title">F1-Score</div>
+            <div class="kpi-sub">Harmonic mean balance</div>
+          </div>
+        </div>
+
+        <!-- Results Chart Controls & Container -->
+        <div class="charts-card">
+          <div class="chart-header-row">
+            <div>
+              <h3>Model Training & Confusion Matrix</h3>
+              <p>Explore accuracy convergence curves and category classification distribution.</p>
+            </div>
+            <div class="chart-tab-buttons">
+              <button class="chart-tab active" data-chart="training">Training Curves</button>
+              <button class="chart-tab" data-chart="comparison">Per-Class Metrics</button>
+              <button class="chart-tab" data-chart="confusion">Confusion Matrix</button>
+            </div>
+          </div>
+
+          <!-- Chart Canvas Area -->
+          <div class="chart-body">
+            <!-- Panel 1: Training Curve (Chart.js canvas) -->
+            <div class="chart-pane active" id="pane-training">
+              <div class="canvas-container">
+                <canvas id="trainingCurveChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Panel 2: Per Class Metrics (Chart.js canvas) -->
+            <div class="chart-pane" id="pane-comparison">
+              <div class="canvas-container">
+                <canvas id="classMetricsChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Panel 3: Confusion Matrix -->
+            <div class="chart-pane" id="pane-confusion">
+              <div class="confusion-matrix-wrapper">
+                <div class="cm-axis-title vertical">Actual Category</div>
+                <div class="cm-table-container">
+                  <div class="cm-axis-title horizontal">Predicted Category</div>
+                  <table class="confusion-table" id="confusion-matrix-table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Predicted Organic (O)</th>
+                        <th>Predicted Recyclable (R)</th>
+                        <th>Class Recall</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Actual Organic (O)</th>
+                        <td class="cm-cell true-positive" title="True Positives (Organic)">
+                          <span class="cm-val">1,195</span>
+                          <span class="cm-pct">95.1%</span>
+                        </td>
+                        <td class="cm-cell false-negative" title="False Negatives (Organic labeled as Recyclable)">
+                          <span class="cm-val">61</span>
+                          <span class="cm-pct">4.9%</span>
+                        </td>
+                        <td class="cm-summary">95.1%</td>
+                      </tr>
+                      <tr>
+                        <th>Actual Recyclable (R)</th>
+                        <td class="cm-cell false-positive" title="False Positives (Recyclable labeled as Organic)">
+                          <span class="cm-val">74</span>
+                          <span class="cm-pct">5.9%</span>
+                        </td>
+                        <td class="cm-cell true-positive" title="True Positives (Recyclable)">
+                          <span class="cm-val">1,177</span>
+                          <span class="cm-pct">94.1%</span>
+                        </td>
+                        <td class="cm-summary">94.1%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="cm-legend">
+                <span class="cm-legend-item"><span class="legend-color-box correct"></span> Correctly Classified (94.6%)</span>
+                <span class="cm-legend-item"><span class="legend-color-box misclassified"></span> Misclassified Contaminants (5.4%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: TECH STACK -->
+    <section class="section tech-section" id="tech-stack">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-cubes"></i> Architecture Foundations</span>
+          <h2 class="section-title">Built with Proven Technologies</h2>
+          <p class="section-subtitle">
+            An end-to-end modern stack designed for reproducible data science, deep learning research, and low-latency computer vision.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <!-- Python -->
+          <div class="tech-card">
+            <div class="tech-icon-box python">
+              <i class="fa-brands fa-python"></i>
+            </div>
+            <h4>Python 3.10+</h4>
+            <span class="tech-category">Core Language</span>
+            <p>
+              The industry lingua franca powering data pipelines, tensor manipulation, and high-performance machine learning workflows.
+            </p>
+          </div>
+
+          <!-- TensorFlow / Keras -->
+          <div class="tech-card">
+            <div class="tech-icon-box tf">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <h4>TensorFlow / Keras</h4>
+            <span class="tech-category">Deep Learning</span>
+            <p>
+              High-level API for crafting convolutional architectures, managing automated backpropagation, and serializing weights to TFLite format.
+            </p>
+          </div>
+
+          <!-- OpenCV -->
+          <div class="tech-card">
+            <div class="tech-icon-box opencv">
+              <i class="fa-solid fa-camera-rotate"></i>
+            </div>
+            <h4>OpenCV (cv2)</h4>
+            <span class="tech-category">Computer Vision</span>
+            <p>
+              Rapid image preprocessing, real-time webcam frame acquisition, resizing, CLAHE contrast tuning, and contour segmentation.
+            </p>
+          </div>
+
+          <!-- Google Colab -->
+          <div class="tech-card">
+            <div class="tech-icon-box colab">
+              <i class="fa-solid fa-infinity"></i>
+            </div>
+            <h4>Google Colab</h4>
+            <span class="tech-category">Cloud GPU Training</span>
+            <p>
+              Hardware-accelerated environment with cloud NVIDIA T4 GPUs for rapid experiment tracking and reproducible notebook sharing.
+            </p>
+          </div>
+
+          <!-- NumPy & Pandas -->
+          <div class="tech-card">
+            <div class="tech-icon-box numpy">
+              <i class="fa-solid fa-square-root-variable"></i>
+            </div>
+            <h4>NumPy & Pandas</h4>
+            <span class="tech-category">Data Science</span>
+            <p>
+              Vectorized array operations, matrix batch reshaping, and dataset directory balancing for consistent class representation.
+            </p>
+          </div>
+
+          <!-- Matplotlib / Seaborn -->
+          <div class="tech-card">
+            <div class="tech-icon-box matplot">
+              <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <h4>Matplotlib & Seaborn</h4>
+            <span class="tech-category">Diagnostics</span>
+            <p>
+              Generates loss convergence plots, confusion matrices, ROC-AUC diagnostic curves, and feature map activation visuals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FUTURE SCOPE -->
+    <section class="section future-section" id="future">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-compass"></i> Forward Roadmap</span>
+          <h2 class="section-title">Future Scope & Innovations</h2>
+          <p class="section-subtitle">
+            Expanding from binary proof-of-concept to ubiquitous commercial smart infrastructure.
+          </p>
+        </div>
+
+        <div class="future-grid">
+          <!-- Item 1: Multi-class Waste Types -->
+          <div class="future-card">
+            <div class="future-icon-wrap">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="future-badge">Phase 2</div>
+            <h3>Multi-Class Waste Segmentation</h3>
+            <p>
+              Transitioning from binary (Organic vs Recyclable) to a granular <strong>6-stream classification</strong> model: Glass, PET Plastics, Paper & Cardboard, Aluminium/Metals, Compost, and E-Waste/Batteries.
+            </p>
+            <div class="future-tags">
+              <span>6-Class Softmax</span>
+              <span>YOLOv9 Instance Seg</span>
+              <span>Sub-category ID</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Mobile App -->
+          <div class="future-card">
+            <div class="future-icon-wrap">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <div class="future-badge">Phase 3</div>
+            <h3>EcoSort Mobile (iOS & Android)</h3>
+            <p>
+              A Flutter citizen application with quantized <strong>TensorFlow Lite on-device inference</strong>. Users point their smartphone camera at any item offline, receive sorting guidelines, and earn eco-points for proper disposal.
+            </p>
+            <div class="future-tags">
+              <span>TFLite On-Device</span>
+              <span>Offline Ready</span>
+              <span>Gamified Rewards</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Smart Bin Integration -->
+          <div class="future-card">
+            <div class="future-icon-wrap">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="future-badge">Phase 4</div>
+            <h3>Autonomous Smart Bin IoT</h3>
+            <p>
+              Deploying EcoSort to edge microcontrollers (Raspberry Pi 5 / NVIDIA Jetson Nano) integrated with ultrasonic fullness sensors and <strong>motorized servo trapdoors</strong> for automated touchless physical sorting in campuses and airports.
+            </p>
+            <div class="future-tags">
+              <span>Edge AI</span>
+              <span>Servo Flap Actuation</span>
+              <span>MQTT IoT Telemetry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: TEAM & CONTACT -->
+    <section class="section team-section" id="team">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-pill"><i class="fa-solid fa-users"></i> Project Creators</span>
+          <h2 class="section-title">Team & Get in Touch</h2>
+          <p class="section-subtitle">
+            Crafted with passion for Artificial Intelligence and Environmental Sustainability. Connect with us or explore the open-source repository.
+          </p>
+        </div>
+
+        <div class="team-contact-layout">
+          <!-- Team Cards -->
+          <div class="team-cards-container">
+            <!-- Member 1 -->
+            <div class="team-card">
+              <div class="member-avatar">
+                <i class="fa-solid fa-user-astronaut"></i>
+              </div>
+              <div class="member-details">
+                <h4 class="member-name">Umar A.</h4>
+                <span class="member-role">Project Lead & Deep Learning Engineer</span>
+                <p class="member-bio">Focused on CNN architecture design, hyperparameter tuning, model quantization, and end-to-end data pipelines.</p>
+                <div class="member-links">
+                  <a href="mailto:contact@ecosort.ai" class="member-social-link" title="Email Umar"><i class="fa-solid fa-envelope"></i></a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Member 2 (Placeholder / Collaborator) -->
+            <div class="team-card">
+              <div class="member-avatar">
+                <i class="fa-solid fa-user-gear"></i>
+              </div>
+              <div class="member-details">
+                <h4 class="member-name">AI Research Collaborator</h4>
+                <span class="member-role">Computer Vision & Data Specialist</span>
+                <p class="member-bio">Curated and balanced the 25,000+ image dataset, conducted OpenCV preprocessing, and evaluated model robustness.</p>
+                <div class="member-links">
+                  <a href="mailto:research@ecosort.ai" class="member-social-link" title="Email Collaborator"><i class="fa-solid fa-envelope"></i></a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://colab.research.google.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="Google Colab"><i class="fa-solid fa-book-bookmark"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Member 3 (Placeholder / Web & Systems) -->
+            <div class="team-card">
+              <div class="member-avatar">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div class="member-details">
+                <h4 class="member-name">Full-Stack Systems Engineer</h4>
+                <span class="member-role">Edge Deployment & Web Experience</span>
+                <p class="member-bio">Built the responsive web showcase, interactive simulation engine, and REST inference endpoints.</p>
+                <div class="member-links">
+                  <a href="mailto:systems@ecosort.ai" class="member-social-link" title="Email Systems"><i class="fa-solid fa-envelope"></i></a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="member-social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form & Repository Info -->
+          <div class="contact-box glass-card">
+            <h3><i class="fa-solid fa-paper-plane"></i> Send Us a Message</h3>
+            <p>Interested in collaborating, testing our pre-trained model weights, or deploying EcoSort in your institution? Drop a message!</p>
+
+            <form id="contact-form" class="contact-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" name="name" placeholder="e.g. Jane Doe" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" name="email" placeholder="jane@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject">Topic / Subject</label>
+                <select id="contact-subject" name="subject">
+                  <option value="research">Academic Research & Dataset</option>
+                  <option value="demo">Smart Bin Hardware Pilot</option>
+                  <option value="contribute">Open Source Contribution</option>
+                  <option value="other">General Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="How can we help you sort waste smarter?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="contact-submit-btn">
+                <span>Send Message</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </form>
+
+            <!-- Quick Links -->
+            <div class="quick-links-box">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="repo-link">
+                <i class="fa-brands fa-github"></i>
+                <div>
+                  <strong>GitHub Repository</strong>
+                  <span>github.com/ecosort-ai/waste-classification</span>
+                </div>
+              </a>
+              <a href="mailto:contact@ecosort.ai" class="repo-link">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                  <strong>Primary Contact</strong>
+                  <span>contact@ecosort.ai</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <span class="logo-icon-box"><i class="fa-solid fa-recycle"></i></span>
+            <span class="brand-text">Eco<span class="brand-accent">Sort</span> AI</span>
+          </div>
+          <p class="footer-tagline">
+            Empowering the global zero-waste transition through lightweight, accurate edge computer vision.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#about">About Project</a></li>
+            <li><a href="#how-it-works">Pipeline</a></li>
+            <li><a href="#demo">Live Demo</a></li>
+            <li><a href="#model">CNN Architecture</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Technical</h5>
+          <ul>
+            <li><a href="#results">Results & Metrics</a></li>
+            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#future">Future Roadmap</a></li>
+            <li><a href="https://github.com" target="_blank">GitHub Repo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://colab.research.google.com" target="_blank">Google Colab Notebook</a></li>
+            <li><a href="#model">Kaggle Dataset</a></li>
+            <li><a href="#team">Contact Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EcoSort AI Project. Open-source educational & environmental initiative.</p>
+        <div class="footer-socials">
+          <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:contact@ecosort.ai" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="#hero" class="back-to-top" title="Back to top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
